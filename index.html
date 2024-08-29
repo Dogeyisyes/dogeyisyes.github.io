@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>catisadev's Developer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> <!-- Developer-themed font -->
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* Gradient background */
+            color: #333;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            visibility: hidden; /* Hide body initially */
+        }
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 87, 91, 0.9); /* Dark semi-transparent background */
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 1s ease-out;
+            visibility: visible;
+        }
+        .loading-screen .loader {
+            text-align: center;
+            font-family: 'Press Start 2P', cursive; /* Developer-themed font */
+        }
+        .loading-screen .loader p {
+            font-size: 1.5em;
+            margin: 0;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+        .loading-screen .spinner {
+            border: 8px solid rgba(255, 255, 255, 0.2); /* Light spinner */
+            border-radius: 50%;
+            border-top: 8px solid #ffffff; /* White spinner */
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto; /* Center spinner */
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .title {
+            width: 100%;
+            background-color: #003e40; /* Darker teal background for title */
+            color: #ffffff;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            perspective: 1000px; /* Adding perspective for 3D effect */
+        }
+        .title img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            transition: transform 0.6s ease, box-shadow 0.6s ease;
+            transform-style: preserve-3d; /* Ensure 3D effects work */
+        }
+        .title img:hover {
+            transform: rotateY(360deg) scale(1.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        .title h1 {
+            font-size: 2.5em;
+            margin: 0;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+        section {
+            padding: 100px 20px 60px;
+            max-width: 900px;
+            margin: auto;
+            background: #ffffff;
+            color: #333;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        section.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        h2 {
+            font-size: 2em;
+            color: #003e40;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #c3cfe2;
+            padding-bottom: 10px;
+            transition: border-color 0.3s ease;
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+        }
+        h2::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: #00575b;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        h2:hover::before {
+            transform: scaleX(1);
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 10px 0;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        li:hover {
+            background-color: #f9f9f9;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .contact-form {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            margin: 20px auto;
+            max-width: 400px;
+            border: 2px solid #ddd;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .contact-form::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.05);
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+        .contact-form:hover::before {
+            opacity: 0;
+        }
+        .contact-form p {
+            font-size: 1.2em;
+            margin: 0;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+        .contact-form a {
+            color: #00575b;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .contact-form a:hover {
+            color: #003e40;
+        }
+        /* 3D Object Animation */
+        .three-d-object {
+            width: 100px;
+            height: 100px;
+            background: #00575b;
+            border-radius: 50%;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            transform-style: preserve-3d;
+            animation: rotate 10s linear infinite;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        @keyframes rotate {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+        @media (max-width: 768px) {
+            .title {
+                padding: 30px 10px;
+            }
+            .title img {
+                width: 100px;
+                height: 100px;
+            }
+            section {
+                padding: 80px 20px 40px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            .contact-form p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-screen">
+        <div class="loader">
+            <p>Loading...</p>
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <div class="title">
+        <img src="https://media.discordapp.net/attachments/1131686009608876032/1278391128588025886/7EC17E18-2732-409E-8BA3-7ECC13BD83B1.jpg?ex=66d0a204&is=66cf5084&hm=9b29559c040d3394f9809a7e04bf8ac4638a514339b02cc9a4e57b3acf27bd4b&=&format=webp&width=792&height=1056" alt="Logo">
+        <h1>catisadev's Developer Portfolio</h1>
+        <div class="three-d-object"></div>
+    </div>
+
+    <section id="about" class="fade-in">
+        <h2>About Me</h2>
+        <p>👋 Hey! I’m catisadev, I’m mainly a Minecraft plug-in developer, but I differ and can do anything Minecraft related mostly. I do CPvP.</p>
+    </section>
+
+    <section id="experience" class="fade-in">
+        <h2>Experience</h2>
+        <ul>
+            <li><strong>Owner</strong> at CenturyMC (60+ players)</li>
+            <li><strong>Co-Owner</strong> at GodsSMP (40+ players)</li>
+            <li><strong>Sr. Moderator</strong> at NexusCPvP (260+ players) - <em>Retired</em></li>
+            <li><strong>Developer</strong> at NexoMC (100+ players)</li>
+            <li><strong>Sr. Developer</strong> at DuskVanilla (900+ players) - <em>Retired</em></li>
+            <li><strong>Administrator</strong> at Hollow Housing (100+ players)</li>
+            <li><strong>Moderator</strong> at PG3D EMPIRE (1450+ players)</li>
+            <li><strong>Co-Owner</strong> at ABYSS SMP (120+ players) - <em>Retired</em></li>
+            <li><strong>Staff</strong> at KingSMP (10,000+ players) - <em>Retired</em></li>
+            <li><strong>Developer</strong> at NovaCPVP (330+ players) - <em>Retired</em></li>
+            <li><strong>Developer</strong> at Time Legacy (250+ players)</li>
+            <li><strong>Staff</strong> at KingSMP NA (1250+ players)</li>
+            <li><strong>Dev</strong> at GN (100+ players)</li>
+            <li><strong>Dev</strong> at HeartCadia Network (350+ players) - <em>Retired</em></li>
+            <li><strong>Mod</strong> at ShoreSMP (3500+ players) - <em>Retired</em></li>
+            <li><strong>Dev</strong> at VibezCPvP (500+ players)</li>
+        </ul>
+    </section>
+
+    <section id="contact" class="fade-in">
+        <h2>Let's Connect</h2>
+        <div class="contact-form">
+            <p>You can reach me through my Discord! <a href="https://discord.gg/zgyncA2EXk" target="_blank">catisadev</a></p>
+ <p></p>       </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                document.querySelector('.loading-screen').style.opacity = '0';
+                document.querySelector('.loading-screen').style.visibility = 'hidden';
+                document.body.style.visibility = 'visible';
+            }, 3000); // 3 seconds loading screen
+        });
+
+        document.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const viewportHeight = window.innerHeight;
+
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop < viewportHeight * 0.8) {
+                    section.classList.add('fade-in');
+                } else {
+                    section.classList.remove('fade-in');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
