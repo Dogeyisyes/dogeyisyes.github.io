@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>catisadev's Developer Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> <!-- Developer-themed font -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* Gradient background */
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             color: #333;
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -16,7 +16,7 @@
             box-sizing: border-box;
             overflow-x: hidden;
             scroll-behavior: smooth;
-            visibility: hidden; /* Hide body initially */
+            visibility: hidden;
         }
         .loading-screen {
             position: fixed;
@@ -24,7 +24,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 87, 91, 0.9); /* Dark semi-transparent background */
+            background: rgba(0, 87, 91, 0.9);
             color: #ffffff;
             display: flex;
             justify-content: center;
@@ -36,7 +36,7 @@
         }
         .loading-screen .loader {
             text-align: center;
-            font-family: 'Press Start 2P', cursive; /* Developer-themed font */
+            font-family: 'Press Start 2P', cursive;
         }
         .loading-screen .loader p {
             font-size: 1.5em;
@@ -45,13 +45,13 @@
             margin-bottom: 20px;
         }
         .loading-screen .spinner {
-            border: 8px solid rgba(255, 255, 255, 0.2); /* Light spinner */
+            border: 8px solid rgba(255, 255, 255, 0.2);
             border-radius: 50%;
-            border-top: 8px solid #ffffff; /* White spinner */
+            border-top: 8px solid #ffffff;
             width: 50px;
             height: 50px;
             animation: spin 1s linear infinite;
-            margin: 0 auto; /* Center spinner */
+            margin: 0 auto;
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
@@ -59,14 +59,14 @@
         }
         .title {
             width: 100%;
-            background-color: #003e40; /* Darker teal background for title */
+            background-color: #004d40;
             color: #ffffff;
             padding: 40px 20px;
             text-align: center;
             position: relative;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             z-index: 1000;
-            perspective: 1000px; /* Adding perspective for 3D effect */
+            perspective: 1000px;
         }
         .title img {
             width: 120px;
@@ -75,7 +75,7 @@
             object-fit: cover;
             margin-bottom: 20px;
             transition: transform 0.6s ease, box-shadow 0.6s ease;
-            transform-style: preserve-3d; /* Ensure 3D effects work */
+            transform-style: preserve-3d;
         }
         .title img:hover {
             transform: rotateY(360deg) scale(1.1);
@@ -88,7 +88,7 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
         }
         section {
-            padding: 100px 20px 60px;
+            padding: 80px 20px 60px;
             max-width: 900px;
             margin: auto;
             background: #ffffff;
@@ -105,7 +105,7 @@
         }
         h2 {
             font-size: 2em;
-            color: #003e40;
+            color: #004d40;
             margin-bottom: 20px;
             border-bottom: 2px solid #c3cfe2;
             padding-bottom: 10px;
@@ -121,7 +121,7 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background-color: #00575b;
+            background-color: #00796b;
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 0.3s ease;
@@ -180,19 +180,18 @@
             transition: color 0.3s ease;
         }
         .contact-form a {
-            color: #00575b;
+            color: #00796b;
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s ease;
         }
         .contact-form a:hover {
-            color: #003e40;
+            color: #004d40;
         }
-        /* 3D Object Animation */
         .three-d-object {
             width: 100px;
             height: 100px;
-            background: #00575b;
+            background: #00796b;
             border-radius: 50%;
             position: absolute;
             top: 20px;
@@ -214,7 +213,7 @@
                 height: 100px;
             }
             section {
-                padding: 80px 20px 40px;
+                padding: 60px 20px 40px;
             }
             h1 {
                 font-size: 2em;
@@ -244,7 +243,7 @@
 
     <section id="about" class="fade-in">
         <h2>About Me</h2>
-        <p>👋 Hey! I’m catisadev, I’m mainly a Minecraft plug-in developer, but I differ and can do anything Minecraft related mostly. I do CPvP. If you would like to reach out to me, keep scrolling down! I enjoy playing other games as well, such as Rocket League, Valorant and Fortnite! To see my experience and for business inquires, contact me at my discord handle (at very bottom of page) and the next section is my experience.</p>
+        <p>👋 Hey! I’m catisadev, I’m mainly a Minecraft plug-in developer, but I differ and can do anything Minecraft related mostly. I do CPvP. If you would like to reach out to me, keep scrolling down! I enjoy playing other games as well, such as Rocket League, Valorant, and Fortnite! To see my experience and for business inquiries, contact me at my Discord handle (at the very bottom of the page) and the next section is my experience.</p>
     </section>
 
     <section id="experience" class="fade-in">
@@ -282,7 +281,7 @@
                 document.querySelector('.loading-screen').style.opacity = '0';
                 document.querySelector('.loading-screen').style.visibility = 'hidden';
                 document.body.style.visibility = 'visible';
-            }, 3000); // 3 seconds loading screen
+            }, 3000);
         });
 
         document.addEventListener('scroll', function() {
@@ -297,20 +296,6 @@
                     section.classList.remove('fade-in');
                 }
             });
-        });
-
-        // Additional script to handle section visibility based on scroll
-        document.addEventListener('scroll', function() {
-            const aboutSection = document.getElementById('about');
-            const experienceSection = document.getElementById('experience');
-            const aboutSectionBottom = aboutSection.getBoundingClientRect().bottom;
-            const viewportHeight = window.innerHeight;
-
-            if (aboutSectionBottom < viewportHeight * 0.8) {
-                experienceSection.classList.add('fade-in');
-            } else {
-                experienceSection.classList.remove('fade-in');
-            }
         });
     </script>
 </body>
