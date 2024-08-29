@@ -244,7 +244,7 @@
 
     <section id="about" class="fade-in">
         <h2>About Me</h2>
-        <p>👋 Hey! I’m catisadev, I’m mainly a Minecraft plug-in developer, but I differ and can do anything Minecraft related mostly. I do CPvP.</p>
+        <p>👋 Hey! I’m catisadev, I’m mainly a Minecraft plug-in developer, but I differ and can do anything Minecraft related mostly. I do CPvP. If you would like to reach out to me, keep scrolling down! I enjoy playing other games as well, such as Rocket League, Valorant and Fortnite! To see my experience and for business inquires, contact me at my discord handle (at very bottom of page) and the next section is my experience.</p>
     </section>
 
     <section id="experience" class="fade-in">
@@ -272,8 +272,8 @@
     <section id="contact" class="fade-in">
         <h2>Let's Connect</h2>
         <div class="contact-form">
-            <p>You can reach me through my Discord! <a href="https://discord.gg/zgyncA2EXk" target="_blank">catisadev</a></p>
- <p></p>       </div>
+            <p>You can reach me through my Discord! <a href="https://discord.gg/CjgFU9Vr" target="_blank">catisadev</a></p>
+        </div>
     </section>
 
     <script>
@@ -298,8 +298,20 @@
                 }
             });
         });
+
+        // Additional script to handle section visibility based on scroll
+        document.addEventListener('scroll', function() {
+            const aboutSection = document.getElementById('about');
+            const experienceSection = document.getElementById('experience');
+            const aboutSectionBottom = aboutSection.getBoundingClientRect().bottom;
+            const viewportHeight = window.innerHeight;
+
+            if (aboutSectionBottom < viewportHeight * 0.8) {
+                experienceSection.classList.add('fade-in');
+            } else {
+                experienceSection.classList.remove('fade-in');
+            }
+        });
     </script>
 </body>
 </html>
-
-
